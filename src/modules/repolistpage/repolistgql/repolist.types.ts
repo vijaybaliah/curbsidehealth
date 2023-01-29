@@ -6,7 +6,7 @@ export interface User {
   __typename: string;
 }
 export interface Repositories {
-  edges?: EdgesEntity[] | null;
+  edges: EdgesEntity[];
   pageInfo: PageInfo;
   __typename: string;
 }
@@ -29,4 +29,18 @@ export type RepositoryOrderField = 'CREATED_AT' | 'NAME' | 'PUSHED_AT' | '';
 export interface RepoSortOptionsType {
   label: string;
   value: RepositoryOrderField;
+}
+
+export interface RepoListFilter {
+  user: string;
+}
+
+export interface RepoListVariables {
+  user: string;
+  nameFilter?: string;
+  orderBy: {
+    field: string;
+    direction: string;
+  };
+  cursor?: string;
 }
