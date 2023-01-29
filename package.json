@@ -30,7 +30,7 @@
     "eject": "react-scripts eject",
     "predeploy": "yarn build",
     "deploy": "gh-pages -b release -d build",
-    "prettier:check": "prettier --check",
+    "prettier:check": "prettier --check --ignore-unknown src/*",
     "prettify": "prettier --write --ignore-unknown",
     "prepare": "husky install",
     "commit": "cz",
