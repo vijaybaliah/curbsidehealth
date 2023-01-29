@@ -83,8 +83,8 @@
   },
   "lint-staged": {
     "*.{ts,tsx}": [
-      "yarn prettify",
-      "yarn lint:fix"
+      "yarn lint:fix",
+      "yarn prettify"
     ]
   }
 }
