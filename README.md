@@ -74,6 +74,8 @@ When a pr is raised this project automatically runs the pr analyse work flow, wh
 - Lint checks
 - Code Style check
 
+`https://github.com/vijaybaliah/curbsidehealth/actions/workflows/pr-analyze.yml`
+
 ## Learn More
 
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
