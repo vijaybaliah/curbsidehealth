@@ -47,6 +47,9 @@ const RepoCreatePage = () => {
     onSubmit: handleFormSubmit,
   });
 
+  const goBack = () => {
+    navigate(-1);
+  };
   if (error) {
     return <p>{error.message}</p>;
   }
@@ -84,9 +87,15 @@ const RepoCreatePage = () => {
             );
           })}
         </select>
-        <button type="submit" className={cx('field', 'submit')}>
-          submit
-        </button>
+        <div className={cx('action')}>
+          <button onClick={goBack} className={cx('field', 'submit')}>
+            Go Back
+          </button>
+
+          <button type="submit" className={cx('field', 'submit')}>
+            submit
+          </button>
+        </div>
       </form>
     </div>
   );
