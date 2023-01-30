@@ -1,7 +1,16 @@
-.search {
+.main {
+  display: flex;
+  justify-content: space-between;
+}
+
+.filter {
   display: flex;
 }
 
-.sort {
+.submit {
+  margin-right: 1rem;
+}
+
+.field {
   margin-left: 1rem;
 }

@@ -35,10 +35,12 @@ export interface RepoSortOptionsType {
 
 export interface RepoListFilter {
   user: string;
+  privacy: string;
 }
 
 export interface RepoListVariables {
   user: string;
+  privacy: string;
   nameFilter?: string;
   orderBy: {
     field: string;

@@ -1,0 +1,18 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  max-width: 50%;
+  margin: auto;
+}
+
+.field {
+  margin-top: 0.5rem;
+}
+
+.center {
+  text-align: center;
+}
+
+.submit {
+  margin-top: 1rem;
+}

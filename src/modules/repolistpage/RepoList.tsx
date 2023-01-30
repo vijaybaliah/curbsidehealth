@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import classNames from 'classnames/bind';
 import { useQuery } from '@apollo/client';
 import { REPOSITORIES_QUERY } from './repolistgql/repolist.gql';
 import RepoFilter from './RepoFilter';
@@ -9,9 +10,14 @@ import type {
 } from './repolistgql/repolist.types';
 import RepoListItem from './RepoListItem';
 import Loader from '../../uikit/Loader/Loader';
+import RepoListTitle from './RepoListTitle';
+import styles from './RepoList.module.css';
+
+const cx = classNames.bind(styles);
 const RepoList = () => {
   const [filter, setFilter] = useState<RepoListFilter>({
-    user: '',
+    user: 'vijaycurbsidehealth',
+    privacy: 'PUBLIC',
   });
   const [sort, setSortOption] = useState('NAME');
 
@@ -31,6 +37,7 @@ const RepoList = () => {
   >(REPOSITORIES_QUERY, {
     variables: {
       user: filter.user,
+      privacy: filter.privacy,
       orderBy: memoisedOrderBy,
     },
   });
@@ -47,6 +54,7 @@ const RepoList = () => {
     fetchMore<RepolistResponse, RepoListVariables>({
       variables: {
         user: filter.user,
+        privacy: filter.privacy,
         cursor: endCursor,
         orderBy: memoisedOrderBy,
       },
@@ -70,16 +78,21 @@ const RepoList = () => {
     });
   };
 
-  if (loading) {
-    return <Loader />;
-  }
   return (
     <>
+      {loading && <Loader />}
       <RepoFilter
         setFilter={setFilter}
         setSortOption={setSortOption}
         sort={sort}
+        defaultUser={filter.user}
+        defaultVisbility={filter.privacy}
       />
+      <div className={cx('row')}>
+        <RepoListTitle>Name</RepoListTitle>
+        <RepoListTitle>Is Archieved</RepoListTitle>
+        <RepoListTitle>Actions</RepoListTitle>
+      </div>
       {repositories.map((repoList) => {
         return (
           <RepoListItem
