@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/curbsidehealth/static/css/main.3eda1aaf.css",
+    "main.js": "/curbsidehealth/static/js/main.f44d0b78.js",
+    "static/js/787.71e1e36c.chunk.js": "/curbsidehealth/static/js/787.71e1e36c.chunk.js",
+    "index.html": "/curbsidehealth/index.html",
+    "main.3eda1aaf.css.map": "/curbsidehealth/static/css/main.3eda1aaf.css.map",
+    "main.f44d0b78.js.map": "/curbsidehealth/static/js/main.f44d0b78.js.map",
+    "787.71e1e36c.chunk.js.map": "/curbsidehealth/static/js/787.71e1e36c.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.3eda1aaf.css",
+    "static/js/main.f44d0b78.js"
+  ]
+}
