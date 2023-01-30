@@ -73,6 +73,10 @@ const RepoFilter = ({
     formik.handleChange('token')(event);
   };
 
+  const handleSubmit = () => {
+    formik.handleSubmit();
+  };
+
   return (
     <div className={cx('main')}>
       <div>
@@ -121,7 +125,7 @@ const RepoFilter = ({
         </label>
         <button
           type={'submit'}
-          onClick={() => formik.handleSubmit()}
+          onClick={handleSubmit}
           className={cx('field', 'submit')}
         >
           Filter

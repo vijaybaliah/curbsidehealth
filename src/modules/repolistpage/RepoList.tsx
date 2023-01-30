@@ -49,10 +49,6 @@ const RepoList = () => {
   const repositories = data?.user?.repositories?.edges ?? [];
   const { endCursor = '', hasNextPage } =
     data?.user?.repositories?.pageInfo ?? {};
-  console.log({
-    loading,
-    error,
-  });
 
   const handleLoadMore = () => {
     fetchMore<RepolistResponse, RepoListVariables>({
@@ -81,6 +77,10 @@ const RepoList = () => {
       },
     });
   };
+
+  if (error) {
+    return <p>{error.message}</p>;
+  }
 
   return (
     <>
