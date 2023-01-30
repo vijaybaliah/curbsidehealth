@@ -1,6 +1,6 @@
 import { ApolloClient, createHttpLink, InMemoryCache } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
-import { githubToken, graphApiURL } from './variables';
+import { graphApiURL } from './variables';
 
 const httpLink = createHttpLink({
   uri: graphApiURL,
@@ -8,7 +8,9 @@ const httpLink = createHttpLink({
 
 const authLink = setContext((_, { headers }) => {
   // get the authentication token from local storage if it exists
-  const token = githubToken;
+  const token = localStorage.getItem('token')
+    ? localStorage.getItem('token')
+    : process.env.REACT_APP_GITHUB_TOKEN;
   // return the headers to the context so httpLink can read them
   return {
     headers: {

@@ -48,3 +48,7 @@ export interface RepoListVariables {
   };
   cursor?: string;
 }
+
+export interface RepoListFilterForm extends RepoListFilter {
+  token: string;
+}

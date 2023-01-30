@@ -32,7 +32,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "yarn build",
-    "deploy": "gh-pages -b release-prod -d build",
+    "deploy": "gh-pages -d build",
     "prettier:check": "prettier --check --ignore-unknown src/*",
     "prettify": "prettier --write --ignore-unknown",
     "prepare": "husky install",
