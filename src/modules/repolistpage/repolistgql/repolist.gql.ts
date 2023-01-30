@@ -9,6 +9,7 @@ export const REPOSITORIES_QUERY = gql`
             name
             url
             id
+            isArchived
           }
         }
         pageInfo {

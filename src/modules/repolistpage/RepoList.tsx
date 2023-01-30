@@ -7,6 +7,8 @@ import type {
   RepolistResponse,
   RepoListVariables,
 } from './repolistgql/repolist.types';
+import RepoListItem from './RepoListItem';
+import Loader from '../../uikit/Loader/Loader';
 const RepoList = () => {
   const [filter, setFilter] = useState<RepoListFilter>({
     user: '',
@@ -39,7 +41,6 @@ const RepoList = () => {
   console.log({
     loading,
     error,
-    data,
   });
 
   const handleLoadMore = () => {
@@ -69,6 +70,9 @@ const RepoList = () => {
     });
   };
 
+  if (loading) {
+    return <Loader />;
+  }
   return (
     <>
       <RepoFilter
@@ -77,7 +81,15 @@ const RepoList = () => {
         sort={sort}
       />
       {repositories.map((repoList) => {
-        return <p key={repoList.node.url}>{repoList.node.name}</p>;
+        return (
+          <RepoListItem
+            owner={filter.user}
+            key={repoList.node.url}
+            id={repoList.node.id}
+            name={repoList.node.name}
+            isArchived={repoList.node.isArchived}
+          />
+        );
       })}
       {hasNextPage && <button onClick={handleLoadMore}>Load More</button>}
     </>

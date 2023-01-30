@@ -17,6 +17,8 @@ export interface EdgesEntity {
 export interface RepoNode {
   name: string;
   url: string;
+  id: string;
+  isArchived: boolean;
   __typename: string;
 }
 export interface PageInfo {
