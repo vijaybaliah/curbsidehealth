@@ -23,6 +23,9 @@ jobs:
       # check for typescript
       - name: Check Types
         run: yarn check:types
+      # check for test
+      - name: Test
+        run: yarn test:ci
       # check for eslint
       - name: Lint
         run: yarn lint:fix
