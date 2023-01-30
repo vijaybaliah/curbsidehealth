@@ -51,6 +51,29 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
+### `yarn deploy -b <BRANCH_NAME>`
+
+To deploy to github pages run the above command
+
+then update the branch in project `Code and automation/pages`
+
+### `yarn lint:fix`
+
+To fix the linting issues in the project
+
+### `yarn check:types`
+
+Validates the type checking in the application
+
+### CI
+
+When a pr is raised this project automatically runs the pr analyse work flow, which checks for the following
+
+- Types validation
+- Test case
+- Lint checks
+- Code Style check
+
 ## Learn More
 
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
