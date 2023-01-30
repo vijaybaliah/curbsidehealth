@@ -10,8 +10,17 @@ import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 
 const cx = classNames.bind(styles);
+
+const handleValidate = (values: CreateFormType) => {
+  const errors: Partial<CreateFormType> = {};
+  if (!values.name) {
+    errors.name = 'This field is required!!!';
+  }
+  return errors;
+};
+
 const RepoCreatePage = () => {
-  const [createRepo, { error, loading, data, reset }] = useMutation(
+  const [createRepo, { error, loading, data }] = useMutation(
     REPOSITORY_CREATE_MUTATION,
   );
 
@@ -19,11 +28,8 @@ const RepoCreatePage = () => {
 
   useEffect(() => {
     if (data) {
-      navigate('/curbsidehealth');
+      navigate(-1);
     }
-    return () => {
-      reset();
-    };
   }, [data]);
 
   const handleFormSubmit = (values: CreateFormType) => {
@@ -37,6 +43,7 @@ const RepoCreatePage = () => {
       description: '',
       visibility: 'PUBLIC',
     },
+    validate: handleValidate,
     onSubmit: handleFormSubmit,
   });
 
@@ -55,6 +62,9 @@ const RepoCreatePage = () => {
           onChange={formik.handleChange('name')}
           className={cx('field')}
         />
+        {formik.errors.name && formik.touched.name && (
+          <p className={cx('error')}>{formik.errors.name}</p>
+        )}
         <input
           placeholder="Enter repo description"
           value={formik.values.description}

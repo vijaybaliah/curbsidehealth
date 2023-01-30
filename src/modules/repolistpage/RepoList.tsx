@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import classNames from 'classnames/bind';
 import { useQuery } from '@apollo/client';
 import { REPOSITORIES_QUERY } from './repolistgql/repolist.gql';
@@ -31,7 +31,7 @@ const RepoList = () => {
       direction: dir,
     };
   }, [sort]);
-  const { loading, error, data, fetchMore } = useQuery<
+  const { loading, error, data, fetchMore, refetch } = useQuery<
     RepolistResponse,
     RepoListVariables
   >(REPOSITORIES_QUERY, {
@@ -41,6 +41,10 @@ const RepoList = () => {
       orderBy: memoisedOrderBy,
     },
   });
+
+  useEffect(() => {
+    refetch();
+  }, []);
 
   const repositories = data?.user?.repositories?.edges ?? [];
   const { endCursor = '', hasNextPage } =

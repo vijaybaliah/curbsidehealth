@@ -14,3 +14,7 @@
 .field {
   margin-left: 1rem;
 }
+
+.error {
+  color: darkred;
+}

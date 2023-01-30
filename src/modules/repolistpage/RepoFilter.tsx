@@ -18,6 +18,17 @@ type Props = {
   defaultUser: string;
 };
 
+const handleValidate = (values: RepoListFilterForm) => {
+  const errors: Partial<RepoListFilterForm> = {};
+  if (!values.user) {
+    errors.user = 'This field is required!!!';
+  }
+  if (!values.token) {
+    errors.token = 'This field is required!!!';
+  }
+  return errors;
+};
+
 const cx = classNames.bind(styles);
 const RepoFilter = ({
   setFilter,
@@ -27,20 +38,19 @@ const RepoFilter = ({
   defaultUser,
 }: Props) => {
   const handleFormSubmit = (values: RepoListFilterForm) => {
-    console.log('</form>: ', values);
-
     setFilter({
       user: values.user,
       privacy: values.privacy,
     });
   };
-
+  const requiredToken = localStorage.getItem('token');
   const formik = useFormik<RepoListFilterForm>({
     initialValues: {
       user: defaultUser,
       privacy: defaultVisbility,
-      token: '',
+      token: requiredToken ? requiredToken : '',
     },
+    validate: handleValidate,
     onSubmit: handleFormSubmit,
   });
   const navigate = useNavigate();
@@ -61,19 +71,24 @@ const RepoFilter = ({
     localStorage.setItem('token', event.target.value);
     client.resetStore();
     formik.handleChange('token')(event);
-    // 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
   };
 
   return (
     <div className={cx('main')}>
-      <label>
-        set token
-        <input
-          type="text"
-          value={formik.values.token}
-          onChange={handleSetToken}
-        />
-      </label>
+      <div>
+        <label>
+          set token
+          <input
+            type="text"
+            value={formik.values.token}
+            placeholder={'enter user token'}
+            onChange={handleSetToken}
+          />
+        </label>
+        {formik.errors.token && formik.touched.token && (
+          <p className={cx('error')}>{formik.errors.token}</p>
+        )}
+      </div>
       <div className={cx('filter')}>
         <label>
           User Name:
@@ -85,6 +100,9 @@ const RepoFilter = ({
             className={cx('field')}
           />
         </label>
+        {formik.errors.user && formik.touched.user && (
+          <p className={cx('error')}>{formik.errors.user}</p>
+        )}
         <label>
           Visibility:
           <select
